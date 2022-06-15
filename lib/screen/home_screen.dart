@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lazy_app/widget/user.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/users.dart';
 
-class HomeScreen extends StatefulWidget {
+/*
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  HomeScreenState createState() => HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class HomeScreenState extends ConsumerState<HomeScreen> {
   bool loading = false;
   late final ScrollController _controller;
 
   @override
   void initState() {
-    Future.delayed(Duration.zero).then((value) {
-      Provider.of<Users>(context, listen: false).loadUsers();
-    });
-
+    // Future.delayed(Duration.zero).then((value) {
+    //   Provider.of<Users>(context, listen: false).loadUsers();
+    // });
+    final userProvider = ref.read(usersProvider);
+    userProvider.loadUsers();
     _controller = ScrollController();
 
     _controller.addListener(() async {
@@ -28,9 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
         setState(() {
           loading = true;
         });
-
-        await context.read<Users>().loadUsers();
-
+        await userProvider.loadUsers();
         setState(() {
           loading = false;
         });
@@ -49,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final users = context.watch<Users>();
+    final users = ref.watch(usersProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -97,3 +98,4 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+*/

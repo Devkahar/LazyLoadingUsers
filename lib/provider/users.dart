@@ -1,56 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 
-class User {
-  final Name name;
-  final Picture picture;
-
-  String get fullName => '${name.first} ${name.last}';
-
-  String get large => picture.large;
-
-  const User({
-    required this.name,
-    required this.picture,
-  });
-
-  factory User.fromJson(Map<String, dynamic> json) {
-    return User(
-      name: Name.fromJson(json['name']),
-      picture: Picture.fromJson(
-        json['picture'],
-      ),
-    );
-  }
-}
-
-class Name {
-  final String first;
-  final String last;
-
-  const Name({
-    required this.first,
-    required this.last,
-  });
-
-  factory Name.fromJson(Map<String, dynamic> json) => Name(
-        first: json['first'],
-        last: json['last'],
-      );
-}
-
-class Picture {
-  final String large;
-
-  const Picture(this.large);
-
-  factory Picture.fromJson(Map<String, dynamic> json) => Picture(
-        json['large'],
-      );
-}
-
+/*
 class Users extends ChangeNotifier {
   final List<User> _usersList = [];
   int _page = 1;
@@ -90,7 +44,9 @@ class Users extends ChangeNotifier {
   refresh() async {
     _page = 1;
     usersList.clear();
-
     await loadUsers();
   }
 }
+final usersProvider = ChangeNotifierProvider((ref) {
+  return Users();
+});*/

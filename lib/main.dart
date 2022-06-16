@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lazy_app/movie_list/views/movie_screen.dart';
 import 'package:lazy_app/provider/users.dart';
 import 'package:lazy_app/screen/home_screen.dart';
 import 'package:lazy_app/user_list/user_list.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const UserListScreen(),
+      home: const MovieScreen(),
     );
   }
 }

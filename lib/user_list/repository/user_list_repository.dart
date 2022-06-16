@@ -15,14 +15,10 @@ class UserListRepository {
     required int page,
     required int resultsPerPage,
   }) async {
-    final url =
-        'https://randomuser.me/api/?page=$page&results=$resultsPerPage&seed=abc';
-
+    final url = 'https://randomuser.me/api/?page=$page&results=$resultsPerPage&seed=abc';
     final response = await _client.get(Uri.parse(url));
-
     if (response.statusCode == 200) {
       final json = jsonDecode(response.body);
-
       final result = UserListResponse.fromJson(json);
       return result;
     } else {
